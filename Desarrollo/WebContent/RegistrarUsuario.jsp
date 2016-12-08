@@ -10,6 +10,7 @@
 <h1>Ingreso de Datos de Usuario</h1>
 <form action = "RegistrarPerfil" method = "post">
 	 
+	 
 	 <p><%= request.getAttribute("msgExito") %></p>
 	 <div>
 	  Usuario: <input type = "text" name = "txtUsuario"/>

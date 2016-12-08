@@ -1,26 +1,21 @@
 package distribuidoraMH.modelo.service;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.swing.JOptionPane;
 
 import distribuidoraMH.modelo.entity.Perfil;
 
 public class ServicioPerfil {
-	static EntityManager em =
-			Persistence.createEntityManagerFactory("Kathy").createEntityManager();
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("BDDMH");
+    EntityManager em = emf.createEntityManager();
 	
-	public String crearPerfil(Perfil p){
-		String mensaje= "Registro Exitoso :D";
-		try{
-		em.getTransaction().begin();
-        em.persist(p);
-        em.getTransaction().commit();
-		}
-		catch (Exception e){
-			JOptionPane.showMessageDialog(null, e);
-		}
+    public String crearPerfil(Perfil u){
+		String mensaje = "Perfil :D creado exitosamente";
 		
+        em.getTransaction().begin();
+		em.persist(u);
+		em.getTransaction().commit();
 		return mensaje;
 	}
 }

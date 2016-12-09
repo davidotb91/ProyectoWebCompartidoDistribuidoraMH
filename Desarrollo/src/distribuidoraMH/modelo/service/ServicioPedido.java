@@ -7,15 +7,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import entity.Perfil;
+import entity.Pedido;
 
 
-public class ServicioPerfil {
-	
+public class ServicioPedido {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("BDDMH");
     EntityManager em = emf.createEntityManager();
 	
-    public String crearPerfil(Perfil u){
+    public String crearPedido(Pedido u){
 		String mensaje = "Perfil :D creado exitosamente";
 		
         em.getTransaction().begin();
@@ -24,7 +23,7 @@ public class ServicioPerfil {
 		return mensaje;
 	}
     
-    public String actualizarUsuario (Perfil u){
+    public String modificarPedido (Pedido u){
 		String mensaje="USUARIo creado Exitosamente";
 		em.getTransaction().begin();
 		em.merge(u);
@@ -33,26 +32,22 @@ public class ServicioPerfil {
 		return mensaje;
 	}
 	
-	public Perfil consultarUsuario (int id){
-		Perfil u = em.find(Perfil.class, id);
+	public Pedido consultarPedido (int id){
+		Pedido u = em.find(Pedido.class, id);
 		return u;
 	}
 	
-	public List<Perfil> consultarUsuarios (String nombre){
-		EntityManagerFactory emf = 
-	       Persistence.createEntityManagerFactory(
-	    		   "PruebaUsuario");
-		EntityManager em = emf.createEntityManager();
+	public List<Pedido> consultarCliente (String ci){
+
 		Query query = em.createQuery(
-			      "SELECT u FROM Usuario AS u where u.nombreCompleto like ?", Perfil.class);
-		query.setParameter(1,nombre);
+			      "SELECT u FROM Cliente AS u where u.ci like ?", Pedido.class);
+		query.setParameter(1,ci);
 			  
 		return query.getResultList();
 	}
 	
-	public String eliminarUsuario (Perfil u){
+	public String eliminarCliente (Pedido u){
 		String mensaje="Usuario eliminado Exitosamente";
 		return mensaje;
 	}
-
 }
